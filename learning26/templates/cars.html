@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>CARS NAME</h1>   
+    {% for i in car %}
+        <h2>{{i}}</h2>
+    {% endfor %}
+    <h2> rating is above 7 </h2>
+    {% if rating >= 7 %}
+    <h3>------best cars------</h2>
+        {% else %}
+    <h3>---think about it---</h3>
+    {% endif %}
+</body>
+</html>
