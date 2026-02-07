@@ -46,7 +46,7 @@ class Category(models.Model):
         db_table = "category"
 
     def __str__(self):
-        return self.categoryName    
+        return self.categoryName
 
 class Service(models.Model):
     serviceName = models.CharField(max_length=100)
@@ -62,7 +62,7 @@ class Service(models.Model):
         db_table = "service"
 
     def __str__(self):
-        return self.serviceName    
+        return self.serviceName
 
 class employee(models.Model):
     employeeName = models.CharField(max_length=100)
@@ -119,7 +119,7 @@ class country(models.Model):
         db_table = "country"
 
     def __str__(self):
-        return self.countryName 
+        return self.countryName
     
 class city(models.Model):
     cityName = models.CharField(max_length=100)
