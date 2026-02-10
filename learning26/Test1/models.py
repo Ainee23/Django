@@ -34,6 +34,13 @@ class Test1User(models.Model):
 # LOCATION
 # =========================
 class Location(models.Model):
+    user = models.ForeignKey(
+        Test1User,
+        on_delete=models.SET_NULL,
+        null=True,
+        blank=True,
+        related_name="locations"
+    )
     latitude = models.DecimalField(max_digits=10, decimal_places=8)
     longitude = models.DecimalField(max_digits=11, decimal_places=8)
     address = models.CharField(max_length=200)
@@ -43,8 +50,6 @@ class Location(models.Model):
 
     def __str__(self):
         return self.address
-
-
 # =========================
 # LOST ITEM (Owner role dynamically)
 # =========================
@@ -117,7 +122,7 @@ class FoundItem(models.Model):
 
 
 # =========================
-# QR CODE (1–1)
+# QR CODE
 # =========================
 class QRCode(models.Model):
     linked_item = models.OneToOneField(LostItem, on_delete=models.CASCADE)
@@ -129,7 +134,7 @@ class QRCode(models.Model):
 
 
 # =========================
-# MESSAGE (M–M via User)
+# MESSAGE
 # =========================
 class Message(models.Model):
     sender = models.ForeignKey(
@@ -176,7 +181,7 @@ class Notification(models.Model):
 
 
 # =========================
-# RATING (M–M via Rating)
+# RATING
 # =========================
 class Rating(models.Model):
     rated_user = models.ForeignKey(
