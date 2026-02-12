@@ -1,16 +1,20 @@
 <h1>EMPLOYEE LIST</h1>
 
+<a href="{% url 'create_employee_with_form' %}">CREATE EMPLOYEE</a> |
+<a href="{% url 'filter_employee' %}">FILTER</a>
 
-{% for emp in employees  %}
-    {{emp.id}}
-    {{emp.name}}
-    {{emp.age}}
-    {{emp.salary}}
-    {{emp.join_date}}
-    {{emp.post}}
-{% endfor %}
 
-<table>
+
+<br><br>
+
+<!-- SORT LINKS -->
+<b>Sort By:</b>
+<a href="{% url 'sortemployees' 3 %}">Age ⬆ ASC</a> |
+<a href="{% url 'sortemployees' 4 %}">Age ⬇ DESC</a>
+
+<br><br>
+
+<table border="1">
     <thead>
         <tr>
             <th>ID</th>
@@ -19,17 +23,22 @@
             <th>Salary</th>
             <th>Join Date</th>
             <th>Post</th>
+            <th>Actions</th>
         </tr>
     </thead>
+
     <tbody>
-        {% for emp in employees  %}
+        {% for emp in employees %}
         <tr>
-            <td>{{emp.id}}</td>
-            <td>{{emp.name}}</td>
-            <td>{{emp.age}}</td>
-            <td>{{emp.salary}}</td>
-            <td>{{emp.join_date}}</td>
-            <td>{{emp.post}}</td>
+            <td>{{ emp.id }}</td>
+            <td>{{ emp.name }}</td>
+            <td>{{ emp.age }}</td>
+            <td>{{ emp.salary }}</td>
+            <td>{{ emp.join_date }}</td>
+            <td>{{ emp.post }}</td>
+            <td>
+                <a href="{% url 'delete_employee' emp.id %}">DELETE</a>
+            </td>
         </tr>
         {% endfor %}
     </tbody>

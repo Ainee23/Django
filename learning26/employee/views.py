@@ -1,4 +1,4 @@
-from django.shortcuts import render,HttpResponse
+from django.shortcuts import render,HttpResponse,redirect
 from .models import Employee
 from .forms import EmployeeForm,CourseForm,StudentForm,CarForm
 
@@ -116,3 +116,37 @@ def createCar(request):
     else:
         form = CarForm()
     return render(request, "employee/createCar.html", {"form": form})
+
+def deleteEmployee(request,id):
+    #delete from employees where id = 1
+    print("id from url = ",id)
+    Employee.objects.filter(id=id).delete()
+    #return HttpResponse("EMPLOYEE DELETED...")
+    #employee list redirecr
+    return redirect("employee_list") #url --> name -->
+
+
+def filterEmployee(request):
+    print("filter employee called...")
+    employees = Employee.objects.filter(age__gte=25).values()
+    print("filter employees = ",employees)
+    #return redirect("employeeList")
+    return render(request,"employee/employeeList.html",{"employees":employees})
+
+def sortemployees(request, id):
+
+    if id == 1:        # ID ASC
+        employees = Employee.objects.all().order_by('id')
+
+    elif id == 2:      # ID DESC
+        employees = Employee.objects.all().order_by('-id')
+
+    elif id == 3:      # AGE ASC
+        employees = Employee.objects.all().order_by('age')
+
+    elif id == 4:      # AGE DESC
+        employees = Employee.objects.all().order_by('-age')
+
+    else:
+        employees = Employee.objects.all()
+    return render(request, "employee/employeeList.html", {"employees": employees})
