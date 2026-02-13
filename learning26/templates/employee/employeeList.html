@@ -38,6 +38,7 @@
             <td>{{ emp.post }}</td>
             <td>
                 <a href="{% url 'delete_employee' emp.id %}">DELETE</a>
+                <a href="{% url 'updateemployee' emp.id %}">UPDATE</a>
             </td>
         </tr>
         {% endfor %}

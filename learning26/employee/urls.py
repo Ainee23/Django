@@ -14,6 +14,6 @@ urlpatterns = [
 
     path('deleteEmployee/<int:id>/', views.deleteEmployee, name='delete_employee'),
     path('filterEmployee/', views.filterEmployee, name='filter_employee'),
-    path("sortemployees/<int:id>/", views.sortemployees, name="sortemployees")
-
+    path("sortemployees/<int:id>/", views.sortemployees, name="sortemployees"),
+    path('updateEmployee/<int:id>/', views.updateEmployee, name='updateemployee'),
 ]

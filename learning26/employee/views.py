@@ -150,3 +150,16 @@ def sortemployees(request, id):
     else:
         employees = Employee.objects.all()
     return render(request, "employee/employeeList.html", {"employees": employees})
+
+def updateEmployee(request,id):
+    
+    employee = Employee.objects.get(id=id)
+    
+    if request.method == "POST":
+        form = EmployeeForm(request.POST,instance=employee)
+        form.save()
+        return redirect("employee_list")
+    else:
+        form = EmployeeForm(instance=employee)
+        return render(request,"employee/updateEmployee.html",{"form":form})
+        
