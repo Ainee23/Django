@@ -1,20 +1,23 @@
+{% extends 'base.html' %}
+{% block content %}
+
 <h1>EMPLOYEE LIST</h1>
 
-<a href="{% url 'create_employee_with_form' %}">CREATE EMPLOYEE</a> |
-<a href="{% url 'filter_employee' %}">FILTER</a>
+<!-- TOP ACTION BUTTONS -->
+<div class="top-links">
+    <a href="{% url 'create_employee_with_form' %}">CREATE EMPLOYEE</a>
+    <a href="{% url 'filter_employee' %}">FILTER</a>
+</div>
 
+<!-- SORT SECTION -->
+<div class="sort-box">
+    <b>Sort By:</b>
+    <a href="{% url 'sortemployees' 3 %}">Age ⬆ ASC</a> |
+    <a href="{% url 'sortemployees' 4 %}">Age ⬇ DESC</a>
+</div>
 
-
-<br><br>
-
-<!-- SORT LINKS -->
-<b>Sort By:</b>
-<a href="{% url 'sortemployees' 3 %}">Age ⬆ ASC</a> |
-<a href="{% url 'sortemployees' 4 %}">Age ⬇ DESC</a>
-
-<br><br>
-
-<table border="1">
+<!-- EMPLOYEE TABLE -->
+<table class="employee-table">
     <thead>
         <tr>
             <th>ID</th>
@@ -36,11 +39,13 @@
             <td>{{ emp.salary }}</td>
             <td>{{ emp.join_date }}</td>
             <td>{{ emp.post }}</td>
-            <td>
-                <a href="{% url 'delete_employee' emp.id %}">DELETE</a>
-                <a href="{% url 'updateemployee' emp.id %}">UPDATE</a>
+            <td class="action">
+                <a href="{% url 'delete_employee' emp.id %}" class="delete">DELETE</a>
+                <a href="{% url 'updateemployee' emp.id %}" class="update">UPDATE</a>
             </td>
         </tr>
         {% endfor %}
     </tbody>
 </table>
+
+{% endblock content %}
