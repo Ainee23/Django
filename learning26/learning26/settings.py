@@ -22,6 +22,7 @@ INSTALLED_APPS = [
     'services',
     'crispy_forms',
     'crispy_bootstrap5',
+    'core'
 ]
 
 MIDDLEWARE = [
@@ -76,4 +77,5 @@ STATICFILES_DIRS = [
 ]
 CRISPY_ALLOWED_TEMPLATE_PACKS = "bootstrap5"
 CRISPY_TEMPLATE_PACK = "bootstrap5"
+AUTH_USER_MODEL = 'core.User'
 
